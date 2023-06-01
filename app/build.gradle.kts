@@ -1,18 +1,20 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    id(Plugins.APG.application)
+    id(Plugins.Kotlin.kotlin)
+    id(Plugins.Kotlin.kotlinKapt)
+    id(Plugins.hilt)
 }
 
 android {
-    namespace = "com.geektech.note_git"
-    compileSdk = 32
+    namespace = "com.geektech.note_g_11"
+    compileSdk = AppConfig.compileSdk
 
     defaultConfig {
-        applicationId = "com.geektech.note_git"
-        minSdk = 26
-        targetSdk = 32
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = "com.geektech.note_g_11"
+        minSdk = AppConfig.minSdk
+        targetSdk = AppConfig.targetSdk
+        versionCode = AppConfig.versionCode
+        versionName = AppConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -32,15 +34,42 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+    kapt {
+        correctErrorTypes = true
+    }
+
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(Dependencies.UI.core)
+    implementation(Dependencies.UI.appcompat)
+    implementation(Dependencies.UI.material)
+    implementation(Dependencies.UI.constraint)
+    implementation(Dependencies.Navigation.navigationFragment)
+    implementation(Dependencies.Navigation.navigationUI)
+    testImplementation(Dependencies.jUnit)
+    androidTestImplementation(Dependencies.Test.jUnit)
+    androidTestImplementation(Dependencies.Test.core)
+
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
+
+    implementation(Dependencies.Room.runtime)
+    kapt(Dependencies.Room.compiler)
+
+    //Hilt
+    implementation(Dependencies.Hilt.android)
+    kapt(Dependencies.Hilt.compiler)
+
+    //Coroutine
+    implementation(Dependencies.Coroutine.core)
+
+    implementation(Dependencies.Lifecycle.runtime)
+    implementation(Dependencies.Lifecycle.fragment)
+
 }
