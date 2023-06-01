@@ -5,4 +5,5 @@ plugins {
     id (Plugins.Kotlin.kotlin) version Versions.kotlinAndroid apply false
     id(Plugins.hilt) version Versions.hilt apply false
     id (Plugins.Kotlin.kotlinJvm) version Versions.kotlinJvm apply false
+
 }
